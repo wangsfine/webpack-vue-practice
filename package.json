@@ -1,0 +1,57 @@
+{
+  "name": "webpack-vue-practice",
+  "version": "1.0.0",
+  "description": "a vue project build with webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve --mode=development --env NODE_ENV=development",
+    "build": "webpack --mode=production --env NODE_ENV=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangsfine/webpack-vue-practice.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "wangzhibing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wangsfine/webpack-vue-practice/issues"
+  },
+  "homepage": "https://github.com/wangsfine/webpack-vue-practice#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "view-design": "^4.6.1",
+    "vue-router": "^3.5.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+    "@vue/babel-preset-jsx": "^1.2.4",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
+    "css-minimizer-webpack-plugin": "^3.0.2",
+    "dotenv-webpack": "^7.0.3",
+    "eslint": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-vue": "^7.16.0",
+    "eslint-webpack-plugin": "^3.0.1",
+    "html-webpack-plugin": "^5.3.2",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.1",
+    "mini-css-extract-plugin": "^2.2.0",
+    "postcss": "^8.3.6",
+    "postcss-loader": "^6.1.1",
+    "postcss-preset-env": "^6.7.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-recommended": "^5.0.0",
+    "vue-loader": "^15.9.8",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
+  }
+}
