@@ -1,15 +1,15 @@
 import VueRouter from "vue-router";
-import Login from '../pages/Login.vue';
-import Index from '../pages/Index.vue';
 
 const routes = [
     {
         path: '/login',
-        component: Login,
+        name: 'Login',
+        component: () => import(/* webpackChunkName: "login" */'../pages/Login.vue'),
     },
     {
         path: '/',
-        component: Index,
+        name: 'Index',
+        component: () => import(/* webpackChunkName: "index" */'../pages/Index.vue'),
     }
 ];
 

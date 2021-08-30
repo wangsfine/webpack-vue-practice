@@ -1,22 +1,8 @@
-import {
-    Button,
-    Input,
-    Row,
-    Col,
-    Form,
-    FormItem,
-} from 'view-design';
-import 'view-design/dist/styles/iview.css';
+import SvgIcon from './SvgIcon.vue';
 
 const globalComponents = [
-    // iview
-    Button,
-    Input,
-    Row,
-    Col,
-    Form,
-    FormItem,
     // custome global component
+    SvgIcon
 ];
 
 export default function install(Vue) {

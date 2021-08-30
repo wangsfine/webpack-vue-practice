@@ -11,15 +11,16 @@
       :model="ruleForm"
       :rules="rules"
     >
-      <Form-item>
+      <Form-item prop="username">
         <Input
           v-model="ruleForm.username"
           placeholder="username"
         />
       </Form-item>
-      <Form-item>
+      <Form-item prop="password">
         <Input
           v-model="ruleForm.password"
+          type="password"
           placeholder="password"
         />
       </Form-item>
@@ -64,17 +65,11 @@ export default {
           }
         };
     },
-    beforeDestroy() {
-        
-    },
     methods: {
-      async handleClick() {
-        try {
-          await this.$refs.ruleForm.validate();
-          alert(11);
-        } catch (error) {
-          console.log(error);
-        }
+      handleClick() {
+        this.$refs.ruleForm.validate((valid) => {
+          valid && this.$router.replace({ name: 'Index'})
+        });
       }
     },
 }

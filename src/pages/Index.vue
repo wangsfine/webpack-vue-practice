@@ -1,10 +1,6 @@
 <template>
   <div class="login">
-    <img 
-      class="logo" 
-      src="../assets/img/baidu.png" 
-      alt="logo"
-    >
+    <svg-icon name="vue" />
     <h1>hello welcome</h1>
   </div>
 </template>

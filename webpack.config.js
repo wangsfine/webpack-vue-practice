@@ -5,6 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 
@@ -23,14 +25,26 @@ module.exports = function (env, argv) {
         output: {
             filename: 'static/js/[name].[contenthash].js',
             assetModuleFilename: 'static/assets/[name].[contenthash].[ext]',
+            chunkFilename: 'static/js/dynamic.[name].[contenthash].js',
             path: path.resolve(__dirname, './dist'),
             clean: true,
         },
         module: {
             rules: [
+                {
+                    test: /\.svg$/i,
+                    include: path.resolve(__dirname, './src/assets/svg'),
+                    exclude: /[\\/]node_modules[\\/]/,
+                    use: {
+                        loader: 'svg-sprite-loader',
+                        options: {
+                            symbolId: 'icon-[name]',
+                        }
+                    },
+                },
                 // 处理静态资源
                 {
-                    test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+                    test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
                     type: "asset",
                 },
                 // 处理.js，.vue会自动引用该条规则
@@ -80,16 +94,25 @@ module.exports = function (env, argv) {
             // 向应用程序中注入环境配置文件中的配置信息,通过process.env.xxx访问
             new Dotenv({
                 path: path.resolve(__dirname, `./.env.${env.NODE_ENV}`),
-            })
+            }),
+            new CopyWebpackPlugin({
+                patterns: [
+                    {
+                        from: path.resolve(__dirname, './public/static'),
+                        to: path.resolve(__dirname, './dist/static'),
+                    }
+                ]
+            }),
+            // new BundleAnalyzerPlugin(),
         ],
         resolve: {
             alias: {
                 "@": path.resolve(__dirname, './src'),
             }
         },
-        externals: {
-            vue: 'Vue',
-        },
+        // externals: {
+        //     vue: 'Vue',
+        // },
         optimization: {
             minimize: true,
             minimizer: [
@@ -99,9 +122,16 @@ module.exports = function (env, argv) {
             splitChunks: {
                 chunks: 'all',
                 // minChunks: 1,
-                // cacheGroups: {
-
-                // }
+                cacheGroups: {
+                    iview: {
+                        test: /[\\/]node_modules[\\/]view-design/,
+                        name: 'iview',
+                    },
+                    framework: {
+                        test: /[\\/]node_modules[\\/](vue|vue-router)/,
+                        name: 'framework',
+                    }
+                }
             }
         },
     };
