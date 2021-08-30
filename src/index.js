@@ -7,6 +7,7 @@ import router from './router';
 import App from './App.vue';
 import components from './components';
 
+
 Vue.use(VueRouter);
 Vue.use(IView);
 Vue.use(components);
